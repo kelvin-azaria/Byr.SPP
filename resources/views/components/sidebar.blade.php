@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-graduation-cap"></i>
     </div>
@@ -42,10 +42,10 @@
   </li>
 
   <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
+  {{-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
       <i class="fas fa-fw fa-wrench"></i>
-      <span>Utilities</span>
+      <span>Kelas</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
@@ -56,6 +56,13 @@
         <a class="collapse-item" href="utilities-other.html">Other</a>
       </div>
     </div>
+  </li> --}}
+  
+  <li class="nav-item">
+    <a href="{{ route('kelas.index') }}" class="nav-link">
+      <i class="fas fa-fw fa fa-building" aria-hidden="true"></i>
+      <span>Kelas</span>
+    </a>
   </li>
 
   <!-- Divider -->

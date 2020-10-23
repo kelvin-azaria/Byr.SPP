@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,7 @@ class HomeController extends Controller
 
   public function index()
   {
-    return view('pages.home');
+    $student_count = Student::all()->count();
+    return view('pages.home',['student_count' => $student_count]);
   }
 }

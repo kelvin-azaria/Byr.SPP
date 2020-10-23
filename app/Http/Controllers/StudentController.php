@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\AcademicYear;
 use App\Classroom;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
@@ -16,7 +18,10 @@ class StudentController extends Controller
      */
     public function index()
     {
-      $students = Student::all();
+      $students = DB::table('students')
+        ->join('classrooms','students.classroom_id','=','classrooms.id')
+        ->select('students.*','classrooms.name AS classroom_name')
+        ->get();
       return view('pages.student.index',['students' => $students]);
     }
 
@@ -28,7 +33,8 @@ class StudentController extends Controller
     public function create()
     {
       $classrooms = Classroom::all();
-      return view('pages.student.create',['classrooms' => $classrooms]);
+      $academic_year = AcademicYear::all();
+      return view('pages.student.create',['classrooms' => $classrooms, 'academic_year' => $academic_year]);
     }
 
     /**
@@ -49,15 +55,43 @@ class StudentController extends Controller
         'address' => 'required',
       ]);
 
-      DB::table('students')->insert([
+      $student_id = DB::table('students')->insertGetId([
         'nis' => $request->nis,
         'name' => $request->name,
         'birth_date' => $request->birthdate,
         'address' => $request->address,
         'gender' => $request->gender,
-        'academic_year' => $request->year,
+        'academic_year_id' => $request->year,
         'classroom_id' => $request->class,
       ]);
+
+      $pay_date = $request->year."-06-10";
+      $month = 7;
+      $year = AcademicYear::find($request->year);
+
+      for ($i=1; $i <= 12; $i++) {
+
+        if ($month > 12) {
+          $month = 1;
+        }
+
+        $monthly_date = date("Y-m-d", strtotime("+$i month" , strtotime($pay_date)));
+
+        $receipt = (str_replace("-","",$monthly_date)).strval($student_id);
+        
+        DB::table('school_fees')->insert([
+          'due_date' => $monthly_date,
+          'month' => $month,
+          'receipt_number' => $receipt,
+          'payment_date' => $request->address,
+          'amount' => $year->fee,
+          'status' => 'BELUM LUNAS',
+          'student_id' => $student_id,
+          'user_id' => Auth::id()
+        ]);
+
+        $month++;
+      }
 
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil ditambahkan');
     }
@@ -84,8 +118,13 @@ class StudentController extends Controller
     public function edit($id)
     {
       $classrooms = Classroom::all();
+      $academic_year = AcademicYear::all();
       $student = Student::findOrFail($id);
-      return view('pages.student.edit',['classrooms' => $classrooms, 'student' => $student]);
+      return view('pages.student.edit',[
+        'classrooms' => $classrooms,
+        'student' => $student,
+        'academic_year' => $academic_year
+      ]);
     }
 
     /**
@@ -113,7 +152,7 @@ class StudentController extends Controller
         'birth_date' => $request->birthdate,
         'address' => $request->address,
         'gender' => $request->gender,
-        'academic_year' => $request->year,
+        'academic_year_id' => $request->year,
         'classroom_id' => $request->class,
       ]);
 

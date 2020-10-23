@@ -21,7 +21,7 @@ class CreateSchoolFeesTable extends Migration
             $table->string('payment_date');
             $table->string('amount');
             $table->string('status');
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -34,6 +34,11 @@ class CreateSchoolFeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_fees');
+      Schema::table('school_fees', function (Blueprint $table) {
+        $table->dropForeign(['user_id']);
+        $table->dropColumn('user_id');
+      });
+
+      Schema::dropIfExists('school_fees');
     }
 }

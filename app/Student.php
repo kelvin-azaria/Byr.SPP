@@ -16,4 +16,9 @@ class Student extends Model
     {
         return $this->hasMany('App\SchoolFees');
     }
+
+    public function AcademicYear(Builder $query)
+    {
+        return $this->hasMany('App\AcademicYear');
+    }
 }
