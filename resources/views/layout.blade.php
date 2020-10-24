@@ -19,7 +19,10 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset("css/sb-admin-2.min.css") }}" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ asset("vendor/fontawesome/css/all.css") }}">
 
+  <!-- Custom styles from other pages-->
+  @yield('css')
 </head>
 
 <body id="page-top">
@@ -96,14 +99,8 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-
-  <!-- Page level plugins -->
-  <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-  <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-
+  
+  @yield('js')
 </body>
 
 </html>
