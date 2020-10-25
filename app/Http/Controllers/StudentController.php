@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AcademicYear;
 use App\Classroom;
+use App\SchoolFee;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,15 +56,17 @@ class StudentController extends Controller
         'address' => 'required',
       ]);
 
-      $student_id = DB::table('students')->insertGetId([
-        'nis' => $request->nis,
-        'name' => $request->name,
-        'birth_date' => $request->birthdate,
-        'address' => $request->address,
-        'gender' => $request->gender,
-        'academic_year_id' => $request->year,
-        'classroom_id' => $request->class,
-      ]);
+      $student = new Student;
+      $student->nis = $request->nis;
+      $student->name = $request->name;
+      $student->birth_date = $request->birthdate;
+      $student->address = $request->address;
+      $student->gender = $request->gender;
+      $student->academic_year_id = $request->year;
+      $student->classroom_id = $request->class;
+      $student->save();
+
+      $student_id = $student->id;
 
       $pay_date = $request->year."-06-10";
       $month = 7;
@@ -78,17 +81,16 @@ class StudentController extends Controller
         $monthly_date = date("Y-m-d", strtotime("+$i month" , strtotime($pay_date)));
 
         $receipt = (str_replace("-","",$monthly_date)).strval($student_id);
-        
-        DB::table('school_fees')->insert([
-          'due_date' => $monthly_date,
-          'month' => $month,
-          'receipt_number' => $receipt,
-          'payment_date' => $request->address,
-          'amount' => $year->fee,
-          'status' => 'BELUM LUNAS',
-          'student_id' => $student_id,
-          'user_id' => Auth::id()
-        ]);
+
+        $school_fee = new SchoolFee;
+        $school_fee->due_date = $monthly_date;
+        $school_fee->month = $month;
+        $school_fee->receipt_number = $receipt;
+        $school_fee->amount = $year->fee;
+        $school_fee->status = 'BELUM LUNAS';
+        $school_fee->student_id = $student_id;
+        $school_fee->user_id = Auth::id();
+        $school_fee->save();
 
         $month++;
       }
@@ -104,7 +106,11 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-      $student = Student::findOrFail($id);
+      $student = DB::table('students')
+        ->join('academic_years','students.academic_year_id','=','academic_years.id')
+        ->select('students.*','academic_years.year AS academic_year')
+        ->where('students.id',$id)
+        ->first();
       $classroom = Classroom::find($student->classroom_id);
       return view('pages.student.show',['student' => $student, 'classroom' => $classroom]);
     }
@@ -146,15 +152,15 @@ class StudentController extends Controller
         'address' => 'required',
       ]);
 
-      DB::table('students')->where('id', $id)->update([
-        'nis' => $request->nis,
-        'name' => $request->name,
-        'birth_date' => $request->birthdate,
-        'address' => $request->address,
-        'gender' => $request->gender,
-        'academic_year_id' => $request->year,
-        'classroom_id' => $request->class,
-      ]);
+      $student = Student::find($id);
+      $student->nis = $request->nis;
+      $student->name = $request->name;
+      $student->birth_date = $request->birthdate;
+      $student->address = $request->address;
+      $student->gender = $request->gender;
+      $student->academic_year_id = $request->year;
+      $student->classroom_id = $request->class;
+      $student->save();
 
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil diubah');
     }
@@ -167,7 +173,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-      DB::table('students')->where('id', $id)->delete();
+      $fees = SchoolFee::where('student_id',$id)->delete();
+      $student = Student::destroy($id);
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil dihapus');
     }
 }

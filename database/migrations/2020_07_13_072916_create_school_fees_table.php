@@ -18,7 +18,7 @@ class CreateSchoolFeesTable extends Migration
             $table->date('due_date');
             $table->string('month');
             $table->string('receipt_number');
-            $table->string('payment_date');
+            $table->string('payment_date')->nullable();
             $table->string('amount');
             $table->string('status');
             $table->unsignedBigInteger('user_id');

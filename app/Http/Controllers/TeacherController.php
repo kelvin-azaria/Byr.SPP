@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -25,7 +26,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+      return view('pages.teacher.create');
     }
 
     /**
@@ -36,7 +37,25 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $this->validate($request,[
+        'name' => 'required',
+        'nip' => 'required',
+        'phone' => 'required',
+        'birthdate' => 'required',
+        'gender' => 'required',
+        'address' => 'required',
+      ]);
+
+      $teacher = new Teacher;
+      $teacher->name = $request->name;
+      $teacher->nip = $request->nip;
+      $teacher->phone = $request->phone;
+      $teacher->birth_date = $request->birthdate;
+      $teacher->gender = $request->gender;
+      $teacher->address = $request->address;
+      $teacher->save();
+      
+      return redirect(route('guru.index'))->with('status','Data kelas berhasil ditambahkan');
     }
 
     /**
@@ -47,7 +66,8 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        //
+      $teacher = Teacher::findOrFail($id);
+      return view('pages.teacher.show',['teacher' => $teacher]);
     }
 
     /**
@@ -58,7 +78,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+      $teacher = Teacher::findOrFail($id);
+      return view('pages.teacher.edit',['teacher' => $teacher]);
     }
 
     /**
@@ -70,7 +91,25 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request,[
+        'name' => 'required',
+        'nip' => 'required',
+        'phone' => 'required',
+        'birthdate' => 'required',
+        'gender' => 'required',
+        'address' => 'required',
+      ]);
+
+      $teacher = Teacher::find($id);
+      $teacher->name = $request->name;
+      $teacher->nip = $request->nip;
+      $teacher->phone = $request->phone;
+      $teacher->birth_date = $request->birthdate;
+      $teacher->gender = $request->gender;
+      $teacher->address = $request->address;
+      $teacher->save();
+
+      return redirect(route('guru.index'))->with('status','Data kelas berhasil diubah');
     }
 
     /**

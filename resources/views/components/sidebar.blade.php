@@ -31,7 +31,7 @@
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-users"></i>
+      <i class="fas fa-fw fa-user"></i>
       <span>Siswa</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -45,13 +45,13 @@
   
   <li class="nav-item">
     <a href="{{ route('kelas.index') }}" class="nav-link">
-      <i class="fas fa-fw fa fa-building" aria-hidden="true"></i>
+      <i class="fas fa-fw fa fa-school" aria-hidden="true"></i>
       <span>Kelas</span>
     </a>
   </li>
 
   <li class="nav-item">
-    <a href="{{ route('kelas.index') }}" class="nav-link">
+    <a href="{{ route('guru.index') }}" class="nav-link">
       <i class="fas fa-fw fa fa-chalkboard-teacher" aria-hidden="true"></i>
       <span>Guru</span>
     </a>

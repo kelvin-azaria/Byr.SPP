@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	<title>Byr.SPP - Ubah Data Siswa</title>
+	<title>Byr.SPP - Tambah Data Guru</title>
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
 
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Ubah Data Siswa</h1>
+    <h1 class="h3 mb-0 text-gray-800">Tambah Data Guru</h1>
     <a href="{{ url()->previous() }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-arrow-left fa-sm text-white-50"></i> Kembali</a>
   </div>
   <!-- Content Row -->
@@ -17,17 +17,15 @@
     <div class="col-xl-12 col-md-12 col-sm-12 mb-4">
       <div class="card shadow mb-4 p-4">
         <div class="col-12">
-          <form action="{{ route('siswa.update',$student->id) }}" method="POST">
+          <form action="{{ route('guru.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
 
-            @include('pages.student._form')
+            @include('pages.teacher._form')
 
           </form>
         </div>
       </div>
     </div>
   </div>
-  
 </div>
 @endsection
