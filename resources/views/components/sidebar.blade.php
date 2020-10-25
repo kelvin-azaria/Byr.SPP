@@ -57,6 +57,13 @@
     </a>
   </li>
 
+  <li class="nav-item">
+    <a href="{{ route('spp.search') }}" class="nav-link">
+      <i class="fas fa-fw fa fa-money-check-alt" aria-hidden="true"></i>
+      <span>Transaksi</span>
+    </a>
+  </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 
