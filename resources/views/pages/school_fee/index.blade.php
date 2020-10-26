@@ -66,12 +66,15 @@
                   <td>Rp.{{ $details->amount }}</td>
                   <td>{{ $details->status }}</td>
                   <td>
-                    <a href="{{ route('spp.pay', $details->id) }}" class="btn btn-success ml-3">
-                      <i class="fa fa-check" aria-hidden="true"></i>
-                    </a>
-                    <a href="{{ route('spp.cancel_pay', $details->id) }}" class="btn btn-danger">
-                      <i class="fa fa-times" aria-hidden="true"></i>
-                    </a>
+                    @if ($details->status === "LUNAS")
+                      <a href="{{ route('spp.cancel_pay', $details->id) }}" class="btn btn-danger ml-3" style="width: 48px">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                      </a>
+                    @else
+                      <a href="{{ route('spp.pay', $details->id) }}" class="btn btn-success ml-3" style="width: 48px">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </a>  
+                    @endif
                   </td>
                 </tr>
               @endforeach
