@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('siswa', 'StudentController');
 Route::resource('kelas', 'ClassroomController');
 Route::resource('guru', 'TeacherController');
+Route::resource('tahun', 'AcademicYearController');
 
 Route::get('/spp/{spp}','SchoolFeeController@index')->name('spp.index');
 Route::get('/spp/pay/{spp}','SchoolFeeController@pay')->name('spp.pay');

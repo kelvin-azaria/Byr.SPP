@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+@php
+  setlocale(LC_ALL, 'id_ID.utf8');
+@endphp
 <div class="container-fluid">
 
   <!-- Page Heading -->
@@ -57,7 +60,7 @@
               @foreach ($fees as $id => $details)
                 <tr>
                   <td>{{ $details->receipt_number }}</td>
-                  <td>{{ date("F", mktime(0, 0, 0, $details->month, 10)) }}</td>
+                  <td>{{ strftime("%B", mktime(0, 0, 0, $details->month, 10)) }}</td>
                   <td>{{ $details->due_date }}</td>
                   <td>{{ $details->payment_date === null ? "-" : $details->payment_date }}</td>
                   <td>Rp.{{ $details->amount }}</td>

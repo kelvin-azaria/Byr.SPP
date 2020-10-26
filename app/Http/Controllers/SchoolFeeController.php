@@ -42,7 +42,8 @@ class SchoolFeeController extends Controller
       $fee->payment_date = Carbon::now();
       $fee->save();
 
-      return redirect()->back()->with('status','Transaksi pada bulan '.date("F", mktime(0, 0, 0, $fee->month, 10)).' berhasil dilakukan');;
+      setlocale(LC_ALL, 'id_ID.utf8');
+      return redirect()->back()->with('status','Transaksi pada bulan '.strftime("%B", mktime(0, 0, 0, $fee->month, 10)).' berhasil dilakukan');;
     }
 
     public function cancel($id)
@@ -52,6 +53,7 @@ class SchoolFeeController extends Controller
       $fee->payment_date = null;
       $fee->save();
 
-      return redirect()->back()->with('status','Transaksi pada bulan '.date("F", mktime(0, 0, 0, $fee->month, 10)).' berhasil dibatalkan');
+      setlocale(LC_ALL, 'id_ID.utf8');
+      return redirect()->back()->with('status','Transaksi pada bulan '.strftime("%B", mktime(0, 0, 0, $fee->month, 10)).' berhasil dibatalkan');
     }
 }

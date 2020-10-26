@@ -58,10 +58,38 @@
   </li>
 
   <li class="nav-item">
+    <a href="{{ route('tahun.index') }}" class="nav-link">
+      <i class="fas fa-fw fa fa-chalkboard" aria-hidden="true"></i>
+      <span>Tahun Pembelajaran</span>
+    </a>
+  </li>
+
+  <li class="nav-item">
     <a href="{{ route('spp.search') }}" class="nav-link">
-      <i class="fas fa-fw fa fa-money-check-alt" aria-hidden="true"></i>
+      <i class="fas fa-fw fa fa-hand-holding-usd" aria-hidden="true"></i>
       <span>Transaksi</span>
     </a>
+  </li>
+
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+    Laporan
+  </div>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan" aria-expanded="true" aria-controls="collapseLaporan">
+      <i class="fas fa-fw fa-file-invoice-dollar"></i>
+      <span>Laporan Transaksi</span>
+    </a>
+    <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="{{ route('siswa.index') }}">Hari ini</a>
+        <a class="collapse-item" href="{{ route('siswa.index') }}">Bulan ini</a>
+        <a class="collapse-item" href="{{ route('siswa.index') }}">Tahun ini</a>
+      </div>
+    </div>
   </li>
 
   <!-- Divider -->

@@ -120,6 +120,7 @@ class TeacherController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $teacher = Teacher::destroy($id);
+      return redirect(route('guru.index'))->with('status','Data kelas berhasil dihapus');
     }
 }
