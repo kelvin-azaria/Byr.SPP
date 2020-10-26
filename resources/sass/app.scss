@@ -6,3 +6,12 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.spp-card{
+  box-shadow: none;
+  transition: 0.3s;
+}
+.spp-card:hover{
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15) !important;
+  transition: 0.3s;
+}

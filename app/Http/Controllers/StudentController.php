@@ -66,34 +66,7 @@ class StudentController extends Controller
       $student->classroom_id = $request->class;
       $student->save();
 
-      $student_id = $student->id;
-
-      $pay_date = $request->year."-06-10";
-      $month = 7;
-      $year = AcademicYear::find($request->year);
-
-      for ($i=1; $i <= 12; $i++) {
-
-        if ($month > 12) {
-          $month = 1;
-        }
-
-        $monthly_date = date("Y-m-d", strtotime("+$i month" , strtotime($pay_date)));
-
-        $receipt = (str_replace("-","",$monthly_date)).strval($student_id);
-
-        $school_fee = new SchoolFee;
-        $school_fee->due_date = $monthly_date;
-        $school_fee->month = $month;
-        $school_fee->receipt_number = $receipt;
-        $school_fee->amount = $year->fee;
-        $school_fee->status = 'BELUM LUNAS';
-        $school_fee->student_id = $student_id;
-        $school_fee->user_id = Auth::id();
-        $school_fee->save();
-
-        $month++;
-      }
+      $this->generateSchoolFees($student, $request->year);
 
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil ditambahkan');
     }
@@ -153,14 +126,29 @@ class StudentController extends Controller
       ]);
 
       $student = Student::find($id);
-      $student->nis = $request->nis;
-      $student->name = $request->name;
-      $student->birth_date = $request->birthdate;
-      $student->address = $request->address;
-      $student->gender = $request->gender;
-      $student->academic_year_id = $request->year;
-      $student->classroom_id = $request->class;
-      $student->save();
+
+      if ($student->academic_year_id !== $request->year) {
+        $student->nis = $request->nis;
+        $student->name = $request->name;
+        $student->birth_date = $request->birthdate;
+        $student->address = $request->address;
+        $student->gender = $request->gender;
+        $student->academic_year_id = $request->year;
+        $student->classroom_id = $request->class;
+        $student->save();
+
+        $this->generateSchoolFees($student, $request->year);
+        
+      } else {
+        $student->nis = $request->nis;
+        $student->name = $request->name;
+        $student->birth_date = $request->birthdate;
+        $student->address = $request->address;
+        $student->gender = $request->gender;
+        $student->academic_year_id = $request->year;
+        $student->classroom_id = $request->class;
+        $student->save();
+      }
 
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil diubah');
     }
@@ -176,5 +164,37 @@ class StudentController extends Controller
       $fees = SchoolFee::where('student_id',$id)->delete();
       $student = Student::destroy($id);
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil dihapus');
+    }
+    
+    private function generateSchoolFees($student, $year_id)
+    {
+      $student_id = $student->id;
+      $year = AcademicYear::find($year_id);
+
+      $pay_date = $year->year."-06-10";
+      $month = 7;
+
+      for ($i=1; $i <= 12; $i++) {
+
+        if ($month > 12) {
+          $month = 1;
+        }
+
+        $monthly_date = date("Y-m-d", strtotime("+$i month" , strtotime($pay_date)));
+
+        $receipt = (str_replace("-","",$monthly_date)).strval($student_id);
+
+        $school_fee = new SchoolFee;
+        $school_fee->due_date = $monthly_date;
+        $school_fee->month = $month;
+        $school_fee->receipt_number = $receipt;
+        $school_fee->amount = $year->fee;
+        $school_fee->status = 'BELUM LUNAS';
+        $school_fee->student_id = $student_id;
+        $school_fee->user_id = Auth::id();
+        $school_fee->save();
+
+        $month++;
+      }
     }
 }

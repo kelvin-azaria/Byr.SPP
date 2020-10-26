@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SchoolFee;
 use App\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SchoolFeeController extends Controller
@@ -30,72 +31,27 @@ class SchoolFeeController extends Controller
     public function index($id)
     {
       $fees = SchoolFee::where('student_id',$id)->get();
-      dd($fees);
+      $student = Student::findOrFail($id);
+      return view('pages.school_fee.index', ['fees' => $fees, 'student' => $student]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function pay($id)
     {
-        //
+      $fee = SchoolFee::findOrFail($id);
+      $fee->status = "LUNAS";
+      $fee->payment_date = Carbon::now();
+      $fee->save();
+
+      return redirect()->back()->with('status','Transaksi pada bulan '.date("F", mktime(0, 0, 0, $fee->month, 10)).' berhasil dilakukan');;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function cancel($id)
     {
-        //
-    }
+      $fee = SchoolFee::findOrFail($id);
+      $fee->status = "BELUM LUNAS";
+      $fee->payment_date = null;
+      $fee->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+      return redirect()->back()->with('status','Transaksi pada bulan '.date("F", mktime(0, 0, 0, $fee->month, 10)).' berhasil dibatalkan');
     }
 }

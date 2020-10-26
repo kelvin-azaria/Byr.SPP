@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-	<title>Byr.SPP - Beranda</title>
+	<title>Byr.SPP - Cari Siswa</title>
 @endsection
 
 @section('content')
