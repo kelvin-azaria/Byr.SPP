@@ -85,9 +85,9 @@
     </a>
     <div id="collapseLaporan" class="collapse" aria-labelledby="headingLaporan" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Hari ini</a>
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Bulan ini</a>
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Tahun ini</a>
+        <a class="collapse-item" href="{{ route('report.daily') }}">Hari ini</a>
+        <a class="collapse-item" href="{{ route('report.monthly') }}">Bulan ini</a>
+        <a class="collapse-item" href="{{ route('report.yearly') }}">Tahun ini</a>
       </div>
     </div>
   </li>

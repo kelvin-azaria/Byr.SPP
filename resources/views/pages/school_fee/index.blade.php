@@ -61,8 +61,8 @@
                 <tr>
                   <td>{{ $details->receipt_number }}</td>
                   <td>{{ strftime("%B", mktime(0, 0, 0, $details->month, 10)) }}</td>
-                  <td>{{ $details->due_date }}</td>
-                  <td>{{ $details->payment_date === null ? "-" : $details->payment_date }}</td>
+                  <td>{{ date_format(date_create($details->due_date), "d/m/Y") }}</td>
+                  <td>{{ $details->payment_date === null ? "-" : date_format(date_create($details->payment_date), "d/m/Y") }}</td>
                   <td>Rp.{{ $details->amount }}</td>
                   <td>{{ $details->status }}</td>
                   <td>

@@ -1,0 +1,47 @@
+[33mcommit 3ab6760d8de04056af474d8c09b3420dcbdcdc96[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Mon Oct 26 16:03:30 2020 +0700
+
+    improve fees index page
+
+[33mcommit 7ded08810dcab90a53434c2846fb1b6998692822[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Mon Oct 26 16:00:58 2020 +0700
+
+    add CRUD for academic years
+
+[33mcommit 54021c39ec77fb09132a4312aa3fd8383914f012[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Mon Oct 26 10:39:39 2020 +0700
+
+    add fees payment feature
+
+[33mcommit 47ade72e1fa31ed4dbb840d5f8b8b6162f299dfe[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Sun Oct 25 20:16:14 2020 +0700
+
+    add search student on transaction page
+
+[33mcommit 37d50eaf54c2cf6636f32fc57e5321ac872b5657[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Sun Oct 25 14:52:39 2020 +0700
+
+    add CRUD for teacher
+
+[33mcommit a81e5722a476b4fdd9d50238c42392e17b9cda44[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Sat Oct 24 19:50:11 2020 +0700
+
+    improve show page and fix fontawesome error
+
+[33mcommit 4dfcfd127f16dd512e76a830726b4c30feef5427[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Fri Oct 23 17:00:30 2020 +0700
+
+    add crud for classroom and fix javascript error
+
+[33mcommit c2889c29419dea6874615132826ed32028facaba[m
+Author: kelvin-azaria <kelvin.azaria.billy@gmail.com>
+Date:   Fri Oct 9 15:59:17 2020 +0700
+
+    initial commit and add students CRUD

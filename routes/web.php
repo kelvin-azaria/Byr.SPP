@@ -30,3 +30,8 @@ Route::get('/spp/cancel/{spp}','SchoolFeeController@cancel')->name('spp.cancel_p
 
 Route::get('/cari_spp','SchoolFeeController@search')->name('spp.search');
 Route::post('/cari_spp','SchoolFeeController@result')->name('spp.search');
+
+Route::get('/report/daily','ReportController@daily')->name('report.daily');
+Route::get('/report/monthly','ReportController@monthly')->name('report.monthly');
+Route::get('/report/yearly','ReportController@yearly')->name('report.yearly');
+
