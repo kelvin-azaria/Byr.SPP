@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    public function Classroom(Builder $query)
+    public function classroom()
     {
         return $this->belongsTo('App\Classroom');
     }
 
-    public function SchoolFees(Builder $query)
+    public function schoolFees()
     {
         return $this->hasMany('App\SchoolFees');
     }
 
-    public function AcademicYear(Builder $query)
+    public function academicYear()
     {
         return $this->hasMany('App\AcademicYear');
     }

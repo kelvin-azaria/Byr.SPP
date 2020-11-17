@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class SchoolFee extends Model
 {
-    public function Student(Builder $query)
+    public function student()
     {
         return $this->belongsTo('App\Student');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

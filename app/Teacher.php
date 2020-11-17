@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
-    public function Classroom(Builder $query)
+    public function classroom()
     {
-        return $this->belongsTo('App\Classroom');
+        return $this->hasMany('App\Classroom');
     }
 }

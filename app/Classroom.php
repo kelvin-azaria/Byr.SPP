@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classroom extends Model
 {
-    public function Teachers(Builder $query)
+    public function teacher()
     {
-        return $this->hasOne('App\Teacher');
+        return $this->belongsTo('App\Teacher');
     }
 
-    public function Students(Builder $query)
+    public function students()
     {
         return $this->hasMany('App\Student');
     }

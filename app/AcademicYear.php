@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AcademicYear extends Model
 {
-  public function Students(Builder $query)
+  public function students()
   {
     return $this->hasMany('App\Student');
   }

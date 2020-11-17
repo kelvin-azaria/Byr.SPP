@@ -34,4 +34,5 @@ Route::post('/cari_spp','SchoolFeeController@result')->name('spp.search');
 Route::get('/report/daily','ReportController@daily')->name('report.daily');
 Route::get('/report/monthly','ReportController@monthly')->name('report.monthly');
 Route::get('/report/yearly','ReportController@yearly')->name('report.yearly');
+Route::get('/report/generate/{type}','ReportController@generate')->name('report.generate');
 
