@@ -56,7 +56,7 @@
                 @foreach ($classrooms as $id => $details)
                   <tr>
                     <td>{{ $details->name }}</td>
-                    <td>{{ $details->teacher_name }}</td>
+                    <td>{{ $details->teacher->name }}</td>
                     <td class="d-flex justify-content-center">
                       <a href="{{ route('kelas.show', $details->id) }}" class="btn btn-primary mr-2">
                         <i class="fa fa-eye" aria-hidden="true"></i>

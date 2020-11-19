@@ -17,11 +17,7 @@ class ClassroomController extends Controller
    */
   public function index()
   {
-    $classroom = DB::table('classrooms')
-      ->join('teachers','classrooms.teacher_id','=','teachers.id')
-      ->select('classrooms.*','teachers.name AS teacher_name')
-      ->get();
-
+    $classroom = Classroom::all();
     return view('pages.classroom.index',['classrooms' => $classroom]);
   }
 
@@ -49,10 +45,10 @@ class ClassroomController extends Controller
       'teacher' => 'required',
     ]);
 
-    DB::table('classrooms')->insert([
-      'name' => $request->name,
-      'teacher_id' => $request->teacher,
-    ]);
+    $classroom = new Classroom;
+    $classroom->name = $request->name;
+    $classroom->teacher_id = $request->teacher;
+    $classroom->save();
 
     return redirect(route('kelas.index'))->with('status','Data kelas berhasil ditambahkan');
   }
@@ -97,10 +93,10 @@ class ClassroomController extends Controller
       'teacher' => 'required',
     ]);
 
-    DB::table('classrooms')->where('id',$id)->update([
-      'name' => $request->name,
-      'teacher_id' => $request->teacher,
-    ]);
+    $classroom = Classroom::find($id);
+    $classroom->name = $request->name;
+    $classroom->teacher_id = $request->teacher;
+    $classroom->save();
     
     return redirect(route('kelas.index'))->with('status','Data kelas berhasil diubah');
   }
@@ -113,7 +109,7 @@ class ClassroomController extends Controller
    */
   public function destroy($id)
   {
-    DB::table('classrooms')->where('id',$id)->delete();
+    Classroom::destroy($id);
     return redirect(route('kelas.index'))->with('status','Data kelas berhasil dihapus');
   }
 }
