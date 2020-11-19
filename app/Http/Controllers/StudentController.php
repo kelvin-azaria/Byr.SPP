@@ -19,10 +19,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-      $students = DB::table('students')
-        ->join('classrooms','students.classroom_id','=','classrooms.id')
-        ->select('students.*','classrooms.name AS classroom_name')
-        ->get();
+      $students = Student::all();
       return view('pages.student.index',['students' => $students]);
     }
 
@@ -79,13 +76,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-      $student = DB::table('students')
-        ->join('academic_years','students.academic_year_id','=','academic_years.id')
-        ->select('students.*','academic_years.year AS academic_year')
-        ->where('students.id',$id)
-        ->first();
-      $classroom = Classroom::find($student->classroom_id);
-      return view('pages.student.show',['student' => $student, 'classroom' => $classroom]);
+      $student = Student::find($id);
+      return view('pages.student.show',['student' => $student]);
     }
 
     /**

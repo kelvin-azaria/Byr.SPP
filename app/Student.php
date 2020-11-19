@@ -19,6 +19,6 @@ class Student extends Model
 
     public function academicYear()
     {
-        return $this->hasMany('App\AcademicYear');
+        return $this->belongsTo('App\AcademicYear');
     }
 }

@@ -65,7 +65,7 @@
                   <tr>
                     <td>{{ $details->nis }}</td>
                     <td>{{ $details->name }}</td>
-                    <td>{{ $details->classroom_name }}</td>
+                    <td>{{ $details->classroom->name }}</td>
                     @if ($details->gender === 'M')
                       <td>Laki-laki</td>
                     @else

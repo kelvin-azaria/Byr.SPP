@@ -47,12 +47,12 @@
           <div class="row mb-3">
             <div class="col-lg-2 font-weight-bold">Tahun Masuk</div>
             <div class="col-lg-1 font-weight-bold">:</div>
-            <div class="col-lg-9">{{ $student->academic_year }}</div>
+            <div class="col-lg-9">{{ $student->academicYear->year }}</div>
           </div>
           <div class="row mb-3">
             <div class="col-lg-2 font-weight-bold">Kelas</div>
             <div class="col-lg-1 font-weight-bold">:</div>
-            <div class="col-lg-9">{{ $classroom->name }}</div>
+            <div class="col-lg-9">{{ $student->classroom->name }}</div>
           </div>
           <div class="row mb-3">
             <div class="col-lg-2 font-weight-bold">Alamat</div>
