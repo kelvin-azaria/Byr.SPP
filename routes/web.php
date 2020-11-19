@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth','check.approval']], function () {
     Route::resource('kelas', 'ClassroomController');
     Route::resource('guru', 'TeacherController');
     Route::resource('tahun', 'AcademicYearController');
-
+    
     Route::get('/report/generate/{type}','ReportController@generate')->name('report.generate');
     Route::get('/petugas/{id}/approve','UserController@approve')->name('petugas.approve');
     Route::get('/petugas/{id}/disapprove','UserController@disapprove')->name('petugas.disapprove');

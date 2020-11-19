@@ -36,21 +36,14 @@
         <span>Petugas</span>
       </a>
     </li>
-
+  
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-user"></i>
+      <a href="{{ route('siswa.index') }}" class="nav-link">
+        <i class="fas fa-fw fa fa-user" aria-hidden="true"></i>
         <span>Siswa</span>
       </a>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas X</a>
-          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XI</a>
-          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XII</a>
-        </div>
-      </div>
     </li>
-  
+
     <li class="nav-item">
       <a href="{{ route('kelas.index') }}" class="nav-link">
         <i class="fas fa-fw fa fa-school" aria-hidden="true"></i>
