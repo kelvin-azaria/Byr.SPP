@@ -76,7 +76,7 @@
                 @foreach ($reports as $id => $details)
                   <tr>
                     <td>{{ $details->receipt_number }}</td>
-                    <td>{{ $details->name }}</td>
+                    <td>{{ $details->student->name }}</td>
                     <td>{{ date_format(date_create($details->payment_date), "d/m/Y") }}</td>
                     <td>Rp.{{ $details->amount }}</td>
                     <td>{{ strftime("%B", mktime(0, 0, 0, $details->month, 10)) }}</td>

@@ -8,7 +8,6 @@ use App\SchoolFee;
 use App\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -130,7 +129,6 @@ class StudentController extends Controller
         $student->save();
 
         $this->generateSchoolFees($student, $request->year);
-        
       } else {
         $student->nis = $request->nis;
         $student->name = $request->name;

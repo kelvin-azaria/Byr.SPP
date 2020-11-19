@@ -13,35 +13,32 @@ class ReportController extends Controller
 {
     public function daily()
     {
-      $reports = SchoolFee::join('students','students.id','=','school_fees.student_id')
-        ->whereDay('school_fees.updated_at', date('d'))
-        ->where('school_fees.status','=','LUNAS')
-        ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
+      $reports = SchoolFee::orderBy('updated_at','DESC')
+        ->where('status','LUNAS')
+        ->whereDay('updated_at',date('d'))
         ->get();
 
-      return view('pages.report.history',['reports' => $reports, 'type' => 'daily']);
+      return view('pages.report.index',['reports' => $reports, 'type' => 'daily']);
     }
 
     public function monthly()
     {
-      $reports = SchoolFee::join('students','students.id','=','school_fees.student_id')
-        ->whereMonth('school_fees.updated_at','=',date('m'))
-        ->where('school_fees.status','=','LUNAS')
-        ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
+      $reports = SchoolFee::orderBy('updated_at','DESC')
+        ->where('status','LUNAS')
+        ->whereMonth('updated_at',date('m'))
         ->get();
 
-      return view('pages.report.history',['reports' => $reports, 'type' => 'monthly']);
+      return view('pages.report.index',['reports' => $reports, 'type' => 'monthly']);
     }
 
     public function yearly()
     {
-      $reports = SchoolFee::join('students','students.id','=','school_fees.student_id')
-        ->whereYear('school_fees.updated_at','=',date('Y'))
-        ->where('school_fees.status','=','LUNAS')
-        ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
+      $reports = SchoolFee::orderBy('updated_at','DESC')
+        ->where('status','LUNAS')
+        ->whereYear('updated_at',date('Y'))
         ->get();
 
-      return view('pages.report.history',['reports' => $reports, 'type' => 'yearly']);
+      return view('pages.report.index',['reports' => $reports, 'type' => 'yearly']);
     }
 
     public function generate($type)
