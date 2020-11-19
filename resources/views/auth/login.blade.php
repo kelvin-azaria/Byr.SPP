@@ -23,7 +23,7 @@
           <!-- Nested Row within Card Body -->
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block align-self-center">
-              <img class="img-fluid" src="{{ url('/img/login.svg') }}" >
+              <img class="img-fluid ml-4" src="{{ url('/img/login.svg') }}" >
             </div>
             <div class="col-lg-6">
               <div class="p-5">
@@ -80,12 +80,14 @@
                             {{ __('Login') }}
                           </button>
                         </div>
-                        <div class="row justify-content-center mt-3">
-                          @if (Route::has('password.request'))
-                            <a class="small" href="{{ route('password.request') }}">
-                              {{ __('Lupa Password?') }}
-                            </a>
-                          @endif
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-md-12 text-center">
+                        <div class="row justify-content-center">
+                          <a href="{{ route('student.login') }}" class="btn btn-outline-primary btn-user btn-block">
+                            Masuk Sebagai Siswa
+                          </a>
                         </div>
                       </div>
                   </div>
@@ -96,6 +98,11 @@
                     <a class="small" href="{{ route('register') }}">Daftar</a>
                   @endif
                 </div>
+                {{-- <div class="text-center">
+                  <a class="btn btn-sm btn-outline-info mt-3" href="{{ route('student.login') }}">
+                    Masuk Sebagai Siswa
+                  </a>
+                </div> --}}
               </div>
             </div>
           </div>
@@ -103,6 +110,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

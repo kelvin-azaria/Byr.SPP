@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
+Route::get('/login_siswa', 'StudentController@login')->name('student.login');
+Route::get('/histori_siswa', 'StudentController@history')->name('student.history');
 
 Route::group(['middleware' => ['auth','check.approval']], function () {
   Route::get('/', 'HomeController@index')->name('home');

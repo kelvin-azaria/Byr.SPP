@@ -155,6 +155,22 @@ class StudentController extends Controller
       $student = Student::destroy($id);
       return redirect(route('siswa.index'))->with('status','Data siswa berhasil dihapus');
     }
+
+    public function login()
+    {
+      return view('auth.login_student');
+    }
+
+    public function history(Request $request)
+    {
+      $this->validate($request,[
+        'nis' => 'required',
+      ]);
+
+      $student = Student::where('nis',$request->nis)->first();
+      $fees = SchoolFee::where('student_id',$student->id)->get();
+      return view('pages.student.history', ['fees' => $fees, 'student' => $student]);
+    }
     
     private function generateSchoolFees($student, $year_id)
     {
