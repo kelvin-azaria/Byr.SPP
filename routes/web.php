@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,26 +14,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth','check.approval']], function () {
+  Route::get('/', 'HomeController@index')->name('home');
 
-Route::resource('siswa', 'StudentController');
-Route::resource('kelas', 'ClassroomController');
-Route::resource('guru', 'TeacherController');
-Route::resource('tahun', 'AcademicYearController');
+  Route::group(['middleware' => 'check.role'], function () {
+    Route::resource('petugas', 'UserController');
+    Route::resource('siswa', 'StudentController');
+    Route::resource('kelas', 'ClassroomController');
+    Route::resource('guru', 'TeacherController');
+    Route::resource('tahun', 'AcademicYearController');
 
-Route::get('/spp/{spp}','SchoolFeeController@index')->name('spp.index');
-Route::get('/spp/pay/{spp}','SchoolFeeController@pay')->name('spp.pay');
-Route::get('/spp/cancel/{spp}','SchoolFeeController@cancel')->name('spp.cancel_pay');
+    Route::get('/report/generate/{type}','ReportController@generate')->name('report.generate');
+    Route::get('/petugas/{id}/approve','UserController@approve')->name('petugas.approve');
+    Route::get('/petugas/{id}/disapprove','UserController@disapprove')->name('petugas.disapprove');
+  });
+  
 
-Route::get('/cari_spp','SchoolFeeController@search')->name('spp.search');
-Route::post('/cari_spp','SchoolFeeController@result')->name('spp.search');
+  Route::get('/spp/{spp}','SchoolFeeController@index')->name('spp.index');
+  Route::get('/spp/pay/{spp}','SchoolFeeController@pay')->name('spp.pay');
+  Route::get('/spp/cancel/{spp}','SchoolFeeController@cancel')->name('spp.cancel_pay');
 
-Route::get('/report/daily','ReportController@daily')->name('report.daily');
-Route::get('/report/monthly','ReportController@monthly')->name('report.monthly');
-Route::get('/report/yearly','ReportController@yearly')->name('report.yearly');
-Route::get('/report/generate/{type}','ReportController@generate')->name('report.generate');
+  Route::get('/cari_spp','SchoolFeeController@search')->name('spp.search');
+  Route::post('/cari_spp','SchoolFeeController@result')->name('spp.search');
+
+  Route::get('/report/daily','ReportController@daily')->name('report.daily');
+  Route::get('/report/monthly','ReportController@monthly')->name('report.monthly');
+  Route::get('/report/yearly','ReportController@yearly')->name('report.yearly');
+});
 

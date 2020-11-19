@@ -1,8 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
   <div class="row justify-content-center h-100">
     <div class="col-xl-10 col-lg-12 col-md-9 my-auto">
+
+      @if (session('status'))
+      <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <span>{{ session('status') }}</span> 
+      </div>   
+      @endif
+      
+      <script>
+      $(".alert").alert();
+      </script>
+
       <div class="card o-hidden border-0 shadow-lg ">
         <div class="card-body p-0">
           <!-- Nested Row within Card Body -->

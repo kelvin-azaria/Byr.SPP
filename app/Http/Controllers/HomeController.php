@@ -10,17 +10,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
-
   public function index()
   {
     $student_count = Student::all()->count();
     $teacher_count = Teacher::all()->count();
     $classroom_count = Classroom::all()->count();
     $report_count = SchoolFee::join('students','students.id','=','school_fees.student_id')
+        ->where('school_fees.status','LUNAS')
         ->whereMonth('school_fees.updated_at','=',date('m'))
         ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
         ->count();

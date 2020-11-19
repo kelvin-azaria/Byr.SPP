@@ -15,6 +15,7 @@ class ReportController extends Controller
     {
       $reports = SchoolFee::join('students','students.id','=','school_fees.student_id')
         ->whereDay('school_fees.updated_at', date('d'))
+        ->where('school_fees.status','=','LUNAS')
         ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
         ->get();
 
@@ -25,6 +26,7 @@ class ReportController extends Controller
     {
       $reports = SchoolFee::join('students','students.id','=','school_fees.student_id')
         ->whereMonth('school_fees.updated_at','=',date('m'))
+        ->where('school_fees.status','=','LUNAS')
         ->select('students.name','school_fees.payment_date','school_fees.amount','school_fees.month','school_fees.receipt_number')
         ->get();
 
@@ -50,7 +52,7 @@ class ReportController extends Controller
         $data = [
           'payments' => SchoolFee::orderBy('updated_at','DESC')
           ->where('status','LUNAS')
-          ->whereMonth('updated_at',date('d'))
+          ->whereDay('updated_at',date('d'))
           ->get()
         ];
       } elseif ($type === 'monthly') {
@@ -64,7 +66,7 @@ class ReportController extends Controller
         $data = [
           'payments' => SchoolFee::orderBy('updated_at','DESC')
           ->where('status','LUNAS')
-          ->whereMonth('updated_at',date('Y'))
+          ->whereYear('updated_at',date('Y'))
           ->get()
         ];
       }

@@ -29,40 +29,49 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-user"></i>
-      <span>Siswa</span>
-    </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas X</a>
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XI</a>
-        <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XII</a>
+  @if (Auth::user()->is_admin)
+    <li class="nav-item">
+      <a href="{{ route('petugas.index') }}" class="nav-link">
+        <i class="fas fa-fw fa fa-id-card" aria-hidden="true"></i>
+        <span>Petugas</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-fw fa-user"></i>
+        <span>Siswa</span>
+      </a>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas X</a>
+          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XI</a>
+          <a class="collapse-item" href="{{ route('siswa.index') }}">Kelas XII</a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
   
-  <li class="nav-item">
-    <a href="{{ route('kelas.index') }}" class="nav-link">
-      <i class="fas fa-fw fa fa-school" aria-hidden="true"></i>
-      <span>Kelas</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a href="{{ route('guru.index') }}" class="nav-link">
-      <i class="fas fa-fw fa fa-chalkboard-teacher" aria-hidden="true"></i>
-      <span>Guru</span>
-    </a>
-  </li>
-
-  <li class="nav-item">
-    <a href="{{ route('tahun.index') }}" class="nav-link">
-      <i class="fas fa-fw fa fa-chalkboard" aria-hidden="true"></i>
-      <span>Tahun Pembelajaran</span>
-    </a>
-  </li>
+    <li class="nav-item">
+      <a href="{{ route('kelas.index') }}" class="nav-link">
+        <i class="fas fa-fw fa fa-school" aria-hidden="true"></i>
+        <span>Kelas</span>
+      </a>
+    </li>
+  
+    <li class="nav-item">
+      <a href="{{ route('guru.index') }}" class="nav-link">
+        <i class="fas fa-fw fa fa-chalkboard-teacher" aria-hidden="true"></i>
+        <span>Guru</span>
+      </a>
+    </li>
+  
+    <li class="nav-item">
+      <a href="{{ route('tahun.index') }}" class="nav-link">
+        <i class="fas fa-fw fa fa-chalkboard" aria-hidden="true"></i>
+        <span>Tahun Pembelajaran</span>
+      </a>
+    </li>
+  @endif
 
   <li class="nav-item">
     <a href="{{ route('spp.search') }}" class="nav-link">
