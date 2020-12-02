@@ -23,7 +23,7 @@
           <!-- Nested Row within Card Body -->
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block align-self-center">
-              <img class="img-fluid ml-4" src="{{ url('/img/login_siswa.svg') }}" >
+              <img class="img-fluid m-4" src="{{ url('/img/login_siswa.svg') }}" >
             </div>
             <div class="col-lg-6">
               <div class="p-5">

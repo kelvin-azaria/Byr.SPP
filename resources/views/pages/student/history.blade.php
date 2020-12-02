@@ -51,7 +51,6 @@
                   <th>Tanggal Bayar</th>
                   <th>Jumlah</th>
                   <th>Keterangan</th>
-                  <th></th>
                 </tr>
               </thead>
               <tfoot>
@@ -62,7 +61,6 @@
                   <th>Tanggal Bayar</th>
                   <th>Jumlah</th>
                   <th>Keterangan</th>
-                  <th></th>
                 </tr>
               </tfoot>
               <tbody>
