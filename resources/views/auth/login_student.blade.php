@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+	<title>Byr.SPP - Login Siswa</title>
+@endsection
+
 @section('content')
 
   <div class="row justify-content-center h-100">

@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Byr.SPP Login</title>
+  @yield('title')
   <link rel="icon" href="img/favicon.ico">
 
   <!-- Custom fonts for this template-->
@@ -22,7 +22,7 @@
 
 <body class="bg-primary">
 
-  <div class="container">
+  <div class="container h-100">
     @yield('content')
   </div>
 

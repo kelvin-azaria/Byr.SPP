@@ -7,6 +7,7 @@ use App\Classroom;
 use App\SchoolFee;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
