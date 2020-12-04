@@ -27,7 +27,13 @@ Pastikan laravel sudah terinstall di komputer anda, untuk tahap-tahap instalasi 
 
     php artisan migrate
 
-**4. Buka aplikasi di browser**<br>
+**4. Jalankan aplikasi**<br>
+	Ketikan command berikut ke terminal
+	
+
+    php artisan serve
+
+**5. Buka aplikasi di browser**<br>
 	Ketikan URL berikut di browser
 	
 
