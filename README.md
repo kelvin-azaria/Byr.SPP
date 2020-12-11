@@ -38,3 +38,5 @@ Pastikan laravel sudah terinstall di komputer anda, untuk tahap-tahap instalasi 
 	
 
     localhost:8000
+
+**6. Selesai**
