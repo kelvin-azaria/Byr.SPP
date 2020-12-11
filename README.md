@@ -12,6 +12,16 @@ Byr.SPP adalah aplikasi manajemen data sekolah yang juga menghadirkan fungsi pem
  - Riwayat pembayaran SPP
  - Generate laporan riwayat pembayaran SPP
 
+**Teknologi yang digunakan :**
+
+ - [Laravel 7](https://laravel.com/docs/7.x/installation)
+ - [Bootstrap 4](https://getbootstrap.com/)
+ - JQuery
+ - [SB Admin 2 Template](https://startbootstrap.com/theme/sb-admin-2)
+ - Node Package Manager (NPM)
+ - [Font Awesome](https://fontawesome.com/)
+ - MySQL
+
 ## Instalasi
 Pastikan laravel sudah terinstall di komputer anda, untuk tahap-tahap instalasi laravel bisa dilihat di [dokumentasi laravel](https://laravel.com/docs/7.x/#installation)
 
