@@ -28,25 +28,43 @@ Pastikan laravel sudah terinstall di komputer anda, untuk tahap-tahap instalasi 
 **1. Clone Project** <br>
 
     git clone https://github.com/kelvin-azaria/Byr.SPP.git
-**2. Buat Database** <br>
+
+**2. Install Composer**<br>
+    Buka terminal dan masuk kedalam folder project yang baru di clone lalu ketikan
+
+    composer install
+    
+**3. Install NPM**<br>
+    Setelah menginstall composer ketikan
+
+    NPM install
+    
+**3. Generate file .env**<br>
+    Ketikan perintah berikut ke terminal
+
+    php artisan key:generate
+    
+**4. Konfigurasi file .env** <br>
+	Isi DB_DATABASE di .env dengan db_spp dan konfigurasi juga variabel-variabel lainnya sesuai database yang digunakan
+    
+    DB_DATABASE=db_spp
+    
+**5. Buat Database** <br>
 	Buatlah database MySQL bernama "db_spp"
 
-**3. Migrate table**<br>
+**6. Migrate table**<br>
 	Pada terminal ketik
-	
 
     php artisan migrate
 
-**4. Jalankan aplikasi**<br>
+**7. Jalankan aplikasi**<br>
 	Ketikan command berikut ke terminal
-	
 
     php artisan serve
 
-**5. Buka aplikasi di browser**<br>
+**8. Buka aplikasi di browser**<br>
 	Ketikan URL berikut di browser
-	
 
     localhost:8000
 
-**6. Selesai**
+**9. Selesai**
